@@ -7,6 +7,9 @@
 # Full name (read-only string)
 
 class Student():
+    def __init__(self, first_name, last_name):
+        self.__first_name = first_name
+        self.__last_name = last_name
 
     # Define getters for all properties.
     @property
@@ -71,34 +74,19 @@ class Student():
         else:
             raise TypeError('Cohort number must be an integer')
 
-# Ensure that only the appropriate value can be assigned to each.
-dan = Student()
-print("No first name: ", dan.first_name)
-# dan.first_name = 0
-dan.first_name = "Dan"
-print("First Name: ", dan.first_name)
-print()
+    def __str__(self):
+        try:
+            return f"{self.full_name} is {self.age} years old and is in cohort {self.__cohort_number}."
+        except AttributeError:
+            return "Student must be assigned a cohort number."
 
-print("No last name: ", dan.last_name)
-# dan.last_name = .2
-dan.last_name = "Theman"
-print("Last Name: ", dan.last_name)
-print()
 
-print("No age: ", dan.age)
-# dan.age = "two"
-# dan.age = .2
-dan.age = 2
-print("Age: ", dan.age)
-print()
+ryan = Student("Ryan", "Crowley")
 
-print("No Cohort: ", dan.cohort_number)
-# dan.cohort_number = "hi"
-# dan.cohort_number = .1
-dan.cohort_number = 36
-print("Cohort number: ", dan.cohort_number)
-print()
+ryan.age = 33
+ryan.cohort_number = 36
+print(ryan)
+    
 
-# The full name property should return first name and last name separated by a space. It's value cannot be set.
-# dan.full_name = "DAN THEMAN"
-print("Full Name: ", dan.full_name)
+
+
